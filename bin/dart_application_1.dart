@@ -1,41 +1,59 @@
 import 'dart:io';
 
 void main() {
-  List tenhocsinh = [];
+  List<String> tenhocsinh = [];
+
   while (true) {
-    print('text menu');
-    print('1,nhap ten hoc sinh');
-    print('2,danh sach hoc sinh');
-    print('3,sap xep danh sach ');
-    print('0,thoat');
+    print('Text menu');
+    print('1. Nhập tên học sinh');
+    print('2. Danh sách học sinh');
+    print('3. Sắp xếp danh sách');
+    print('0. Thoát');
     var choice = stdin.readLineSync();
+
     switch (choice) {
       case '1':
-        print("nhap ten cua ban");
+        print("Nhập tên của bạn:");
         var name = stdin.readLineSync();
         if (name != null && name.isNotEmpty) {
-          print("chao ban $name");
+          print("Chào bạn, $name");
+          tenhocsinh.add(name); // Thêm tên học sinh vào danh sách
         } else {
-          print("ban chua nhap gi");
+          print("Bạn chưa nhập gì.");
         }
-        tenhocsinh.add(name);
+        break;
 
       case '2':
-        print('danh sach hoc sinh');
-        for (var name in tenhocsinh) {
-          print(name);
+        print('Danh sách học sinh:');
+        if (tenhocsinh.isEmpty) {
+          print("Danh sách trống.");
+        } else {
+          for (var name in tenhocsinh) {
+            print(name);
+          }
         }
         break;
+
       case '3':
-        print('danh sach da sap xep');
-        tenhocsinh.sort(); //sap xep tu a->z
-        for (var n in tenhocsinh) {
-          print("-$n");
-        }
+        if (tenhocsinh.isEmpty) {
+          print("Danh sách học sinh trống, không thể sắp xếp.");
+        } else {
+          print('Danh sách đã sắp xếp:');
+          tenhocsinh.sort();// Sắp xếp theo bảng chữ cái
+           for(var i =0;i<tenhocsinh.length;i++){
+            print(("${i+1}:${tenhocsinh[i]}"));
+           }
+          }
         break;
-      default:
-        print('thoat');
+
+      case '0':
+        print('Thoát');
         exit(0);
+
+      default:
+        print('Lựa chọn không hợp lệ. Vui lòng thử lại.');
     }
   }
 }
+
+
