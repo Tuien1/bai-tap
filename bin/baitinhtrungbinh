@@ -1,0 +1,19 @@
+import 'dart:io';
+
+void main() {
+  print("nhập số điểm của bạn cách nhau bằng giấu cách :");
+  var sodiem = stdin.readLineSync();
+  if (sodiem != null && sodiem.isNotEmpty) {
+    double diem = double.tryParse(sodiem) ?? 0.0;
+    List<double> luudiem = [];
+    luudiem.add(diem);
+    double trungbinh = luudiem.reduce((a, b) => a + b) / luudiem.length;
+    if (trungbinh >= 8) {
+      print("giỏi");
+    } else if (trungbinh >= 6.5) {
+      print("khá ");
+    } else {
+      print("trung bình hoac khá ");
+    }
+  }
+}
