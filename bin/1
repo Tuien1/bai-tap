@@ -1,16 +1,14 @@
 import 'dart:io';
 
 class SinhVien {
-  String maSinhVien;
-  String hoten;
-  int tuoi;
+  String? maSinhVien;
+  String? hoten;
+  int? tuoi;
   double diemTrungBinh;
-
   SinhVien(this.hoten, this.tuoi, this.maSinhVien, this.diemTrungBinh);
-
   void hienThiThongTin() {
     print(
-        '$maSinhVien | $hoten | $tuoi | $diemTrungBinh | ${kiemTraHocBong() ? "Có" : "Không"}');
+        'ten:$hoten tuoi:$tuoi masinhvien:$maSinhVien diemTrungBinh:$diemTrungBinh');
   }
 
   bool kiemTraHocBong() {
@@ -18,25 +16,19 @@ class SinhVien {
   }
 }
 
-class StudentDataSource {
-  List<SinhVien> getAllStudents() {
-    return [
-      SinhVien("Nam", 16, "sv001", 4.8),
-      SinhVien("Trang", 16, "sv002", 6.5),
-      SinhVien("Tuyen", 16, "sv003", 8.7),
-    ];
-  }
-}
-
-void hienThiDanhSach(List<SinhVien> danhSach) {
-  print("\n===== DANH SÁCH SINH VIÊN =====");
-  print("Mã SV  | Họ Tên | Tuổi | Điểm TB | Học Bổng");
-  print("-----------------------------------------");
-  for (var sv in danhSach) {
+void main() {
+  List<SinhVien> danhSachSinhVien = [];
+  SinhVien sv1 = SinhVien("Nam", 16, "sv001", 4.8);
+  danhSachSinhVien.add(sv1);
+  SinhVien sv2 = SinhVien("Trang", 16, "sv002", 6.5);
+  danhSachSinhVien.add(sv2);
+  SinhVien sv3 = SinhVien("Tuyen", 16, "sv003", 8.7);
+  danhSachSinhVien.add(sv3);
+  for (var sv in danhSachSinhVien) {
     sv.hienThiThongTin();
+    print("Hoc Bong:${sv.kiemTraHocBong() ? "co" : "khong"}");
   }
-}
-
+ }
 void main() {
   StudentDataSource dataSource = StudentDataSource();
   List<SinhVien> danhSachSinhVien = dataSource.getAllStudents();
@@ -74,5 +66,14 @@ void main() {
       default:
         print("Lựa chọn không hợp lệ. Vui lòng thử lại.");
     }
+  }
+}
+
+void hienThiDanhSach(List<SinhVien> danhSach) {
+  print("\n===== DANH SÁCH SINH VIÊN =====");
+  print("Mã SV     | Họ Tên         | Tuổi  | Điểm TB | Học Bổng");
+  print("------------------------------------------------------");
+  for (var sv in danhSach) {
+    sv.hienThiThongTin();
   }
 }
